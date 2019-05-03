@@ -44,6 +44,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JToolBar;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.*;
+
 import com.l2fprod.common.swing.JTipOfTheDay;
 import com.l2fprod.common.swing.plaf.windows.WindowsLookAndFeelAddons;
 import com.l2fprod.common.swing.tips.DefaultTip;
@@ -55,6 +59,9 @@ public class MainWindow extends JFrame {
 
 
 	private static final long serialVersionUID = 1L;
+	final static Logger logger = Logger.getLogger("logger");	
+	   final static Logger myLogger = Logger.getLogger("myLogger");
+	
 	JMenu fileMenu, editMenu, viewMenu, helpMenu, windowItem, operationMenu;
 	JMenuItem newItem, loadItem, saveItem, saveAsItem, exitItem, helpItem, aboutItem, valuesItem, avgItem, sumItem,
 			findItem,tipItem;
@@ -694,16 +701,13 @@ public class MainWindow extends JFrame {
 		}
 	}
 	
-
-	
-	
-	
-	
 	public static void main(String[] args) {
 
 		MainWindow Window = new MainWindow();
 		Window.setVisible(true);
 		totd.showDialog(Window);
+		PropertyConfigurator.configure("mainLog.properties");
+		logger.info("Start aplikacji");
 		
 		
 
