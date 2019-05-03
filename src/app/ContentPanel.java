@@ -38,6 +38,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 
+import org.apache.log4j.Logger;
 import org.freixas.jcalendar.JCalendarCombo;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -62,7 +63,7 @@ import operations.OperationManager;
 public class ContentPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
+	final static Logger logger = Logger.getLogger("logger");
 	JLabel[] numbersLabel, numbersLabelTwo;
 	JTextField entryArea;
 	JButton addEntryButton;
@@ -366,6 +367,7 @@ public class ContentPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 				dateArea.setText(df.format(calendar.getDate()));
+				logger.info("Wybrano datę"+ df.format(calendar.getDate()));
 				
 			}
 		});
@@ -377,24 +379,31 @@ public class ContentPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				char cell = '_';
 				if (table.isEditing()) {
 					table.getCellEditor().stopCellEditing();
 				}
+				
 				switch (xSlider.getValue()) {
 				case 0:
 					col = 0;
+					cell = 'A';
 					break;
 				case 25:
 					col = 1;
+					cell = 'B';
 					break;
 				case 50:
 					col = 2;
+					cell = 'C';
 					break;
 				case 75:
 					col = 3;
+					cell = 'D';
 					break;
 				case 100:
 					col = 4;
+					cell = 'E';
 					break;
 				}
 
@@ -422,6 +431,7 @@ public class ContentPanel extends JPanel {
 				helper.setSaveState(false);
 				state.setSaveStatus(helper.getSaveState());
 				table.repaint();
+				logger.info("Wprowadzono wartość: "+ value + " " + "do komórki: " + cell+(row+1));
 				updateChart(false);
 				}
 				
@@ -445,6 +455,7 @@ public class ContentPanel extends JPanel {
 
 					//Operacja zerowania modelu
 					((OperationManager) table.getModel()).fillWithZeros();
+					
 					helper.setSaveState(false);
 					table.repaint();
 					state.setSaveStatus(false);
@@ -465,13 +476,16 @@ public class ContentPanel extends JPanel {
 				switch (operationList.getSelectedIndex()) {
 				case 0:
 					resultArea.setText(String.valueOf(((OperationManager) table.getModel()).sumOperation()));
+					logger.info("Przeprowadzono operację suma");
 					break;
 				case 1:
 					resultArea.setText(String.valueOf(((OperationManager) table.getModel()).averageOperation()));
+					logger.info("Przeprowadzono operację średnia");
 					break;
 				case 2:
 					resultArea.setText("Min: " + String.valueOf(((OperationManager) table.getModel()).minOperation())
 							+ " Max: " + String.valueOf(((OperationManager) table.getModel()).maxOperation()));
+					logger.info("Przeprowadzono operację min/max");
 					break;
 				default:
 					break;
@@ -513,13 +527,14 @@ public class ContentPanel extends JPanel {
 						try {
 							if(helper.activePath!=null) {
 							helper.saveFile(tempPath, ((OperationManager) getTable().getModel()).getData());
+							logger.info("Zapisano plik: " + saveDialog.getFile());
 							helper.saveState = true;
 							frame.statusbar.setSaveStatus(helper.getSaveState());
 							frame.statusbar.setFileName(helper.fileName);
 							}
 						} catch (IOException arg2) {
 							// TODO Auto-generated catch block
-							
+							logger.error("Błąd zapisu pliku");
 						}
 
 						frame.statusbar.setSaveStatus(helper.getSaveState());
@@ -537,6 +552,7 @@ public class ContentPanel extends JPanel {
 				getTable().repaint();
 				frame.statusbar.setSaveStatus(helper.saveState);
 				frame.statusbar.setFileName(helper.fileName);
+				logger.info("Utworzono nowy arkusz");
 				updateChart(true);
 				}
 		});
@@ -569,9 +585,11 @@ public class ContentPanel extends JPanel {
 					helper.saveState = true;
 					frame.statusbar.setSaveStatus(helper.getSaveState());
 					frame.statusbar.setFileName(helper.fileName);
+					logger.info("Załadowano plik: " + openDialog.getFile());
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					logger.error("Błąd załadowania pliku");
 				}
 				
 			}
@@ -610,10 +628,12 @@ public class ContentPanel extends JPanel {
 					helper.saveState = true;
 					state.setSaveStatus(helper.getSaveState());
 					state.setFileName(helper.fileName);
+					logger.info("Zapisano plik: " + saveDialog.getFile());
 					return;
 					}
 				} catch (IOException arg0) {
 					// TODO Auto-generated catch block
+					logger.error("Błąd zapisu pliku");
 					
 				}
 
@@ -636,6 +656,7 @@ public class ContentPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setResult("Suma: " +String.valueOf(((OperationManager) getTable().getModel()).sumOperation()));
+				logger.info("Przeprowadzono operację suma");
 				
 			}
 		});
@@ -646,6 +667,7 @@ public class ContentPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setResult("Średnia: " + String.valueOf(((OperationManager) getTable().getModel()).averageOperation()));
+				logger.info("Przeprowadzono operację średnia");
 				
 			}
 		});
@@ -657,6 +679,7 @@ public class ContentPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				setResult("Min: "+ String.valueOf(((OperationManager) getTable().getModel()).minOperation())
 						+ " Max: "+ String.valueOf(((OperationManager) getTable().getModel()).maxOperation()));
+				logger.info("Przeprowadzono operację min/max");
 				
 			}
 		});
@@ -673,6 +696,7 @@ public class ContentPanel extends JPanel {
 
 					//Operacja zerowania modelu
 					((OperationManager) table.getModel()).fillWithZeros();
+					logger.info("Wyzerowano tablicę");
 					helper.setSaveState(false);
 					table.repaint();
 					state.setSaveStatus(false);
@@ -698,6 +722,7 @@ public class ContentPanel extends JPanel {
 					
 					if(saveDialog.getDirectory()!=null && saveDialog.getFile() !=null) {
 						ChartUtilities.writeChartAsPNG(out, chart, chartPanel.getWidth(), chartPanel.getHeight());
+						logger.info("Wyeksportowano wykres do pliku: "+ saveDialog.getFile());
 						out.close();
 						}
 					else {
@@ -707,7 +732,7 @@ public class ContentPanel extends JPanel {
 				    
 
 				} catch (IOException ex) {
-				    
+					logger.error("Błąd eksportu wykresu do pliku .png");
 				}
 				
 			}
@@ -721,6 +746,7 @@ public class ContentPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				updateChart(false);
+				logger.info("Odświeżono wykres");
 				
 			}
 		});
@@ -756,10 +782,12 @@ public class ContentPanel extends JPanel {
 					helper.saveState = true;
 					state.setSaveStatus(helper.getSaveState());
 					state.setFileName(helper.fileName);
+					logger.info("Zapisano plik: " + saveDialog.getFile());
 					return;
 					}
 				} catch (IOException arg0) {
 					// TODO Auto-generated catch block
+					logger.error("Błąd zapisu pliku");
 					
 				}
 
@@ -850,6 +878,7 @@ public class ContentPanel extends JPanel {
 			JOptionPane.showOptionDialog(null, "Wartość musi być liczbą!", "Uwaga",
 						JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null,
 						new String[] {"OK"}, "OK");
+			logger.error("Wprowadzono nieprawidłową wartość");
 			return false;
 		}
 

@@ -1,1 +1,22 @@
 INFO  [main]: 2019-05-03 22:59:15,349Start aplikacji
+INFO  [main]: 2019-05-03 23:06:21,660Start aplikacji
+INFO  [main]: 2019-05-03 23:09:00,999Start aplikacji
+INFO  [AWT-EventQueue-0]: 2019-05-03 23:09:59,168Zapisano plik: test.csv
+INFO  [AWT-EventQueue-0]: 2019-05-03 23:10:12,579Załadowano plik: test.csv
+INFO  [main]: 2019-05-03 23:13:49,164Start aplikacji
+INFO  [AWT-EventQueue-0]: 2019-05-03 23:14:03,297Zapisano plik: C:\\Users\\Paweł Szeląg\\Desktop\\123.csv
+INFO  [main]: 2019-05-03 23:24:03,517Start aplikacji
+INFO  [AWT-EventQueue-0]: 2019-05-03 23:24:08,778Przeprowadzono operację suma
+INFO  [main]: 2019-05-03 23:26:16,678Start aplikacji
+INFO  [AWT-EventQueue-0]: 2019-05-03 23:26:18,241Wybrano datęSat May 18 00:00:00 CEST 2019
+INFO  [main]: 2019-05-03 23:30:27,874Start aplikacji
+INFO  [AWT-EventQueue-0]: 2019-05-03 23:30:30,615Wprowadzono wartość: 21 do komórki: C2
+INFO  [main]: 2019-05-03 23:30:53,292Start aplikacji
+INFO  [AWT-EventQueue-0]: 2019-05-03 23:30:56,873Wprowadzono wartość: 43 do komórki: D21
+INFO  [main]: 2019-05-03 23:31:22,198Start aplikacji
+INFO  [AWT-EventQueue-0]: 2019-05-03 23:31:24,774Wprowadzono wartość: 12 do komórki: C3
+INFO  [AWT-EventQueue-0]: 2019-05-03 23:31:43,976Wprowadzono wartość: 11 do komórki: D3
+INFO  [AWT-EventQueue-0]: 2019-05-03 23:31:46,057Wprowadzono wartość: 11 do komórki: D3
+INFO  [main]: 2019-05-03 23:57:10,866Start aplikacji
+INFO  [AWT-EventQueue-0]: 2019-05-03 23:57:19,457Wprowadzono wartość: 12 do komórki: A3
+INFO  [AWT-EventQueue-0]: 2019-05-03 23:57:25,351Próba znalezienia wartości: 12.0

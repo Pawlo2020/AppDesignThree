@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import org.apache.log4j.Logger;
+
 import app.ContentPanel;
 import operations.OperationManager;
 
@@ -27,6 +29,7 @@ public class FindWindow extends JDialog {
 
 	JTextField findValue;
 	JButton findButton;
+	final static Logger logger = Logger.getLogger("logger");
 
 	public FindWindow(ContentPanel panel) {
 
@@ -67,7 +70,7 @@ public class FindWindow extends JDialog {
 				int[] tabela = new int[2];
 				
 				tabela = ((OperationManager) panel.getTable().getModel()).findValue(Double.valueOf(findValue.getText()));
-				
+				logger.info("Próba znalezienia wartości: " + Double.valueOf(findValue.getText()));
 				
 				panel.highlightCell(tabela[0], tabela[1]);
 				

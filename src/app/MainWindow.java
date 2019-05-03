@@ -60,7 +60,6 @@ public class MainWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = Logger.getLogger("logger");	
-	   final static Logger myLogger = Logger.getLogger("myLogger");
 	
 	JMenu fileMenu, editMenu, viewMenu, helpMenu, windowItem, operationMenu;
 	JMenuItem newItem, loadItem, saveItem, saveAsItem, exitItem, helpItem, aboutItem, valuesItem, avgItem, sumItem,
@@ -177,6 +176,7 @@ public class MainWindow extends JFrame {
 				alwaysOnTopFlag = false;
 				dialog.setVisible(true);
 				dialog.lockMainWindow();
+				logger.info("Otworzono okno pomocy");
 			}
 		});
 
@@ -200,6 +200,7 @@ public class MainWindow extends JFrame {
 						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,
 						new String[] { "Tak", "Nie" }, "Tak");
 				if (value == JOptionPane.YES_OPTION) {
+					logger.info("Wyjście z aplikacji");
 					dispose();
 					System.exit(0);
 				} else {
@@ -217,9 +218,11 @@ public class MainWindow extends JFrame {
 
 					setAlwaysOnTop(true);
 					alwaysOnTopFlag = true;
+					logger.info("Wybrano opcję zawsze na wierzchu");
 				} else {
 					setAlwaysOnTop(false);
 					alwaysOnTopFlag = false;
+					logger.info("Odznaczono opcję zawsze na wierzchu");
 				}
 			}
 
@@ -279,6 +282,7 @@ public class MainWindow extends JFrame {
 				contentPanel.getTable().repaint();
 				statusbar.setSaveStatus(helper.saveState);
 				statusbar.setFileName(helper.fileName);
+				logger.info("Utworzono nowy arkusz");
 				}
 				
 			
@@ -322,9 +326,11 @@ public class MainWindow extends JFrame {
 				if (hideStatusBarFlag == false) {
 					statusbar.setVisible(false);
 					hideStatusBarFlag = true;
+					logger.info("Ukryto pasek statusu");
 				} else {
 					statusbar.setVisible(true);
 					hideStatusBarFlag = false;
+					logger.info("Przywrócono pasek narzędziowy");
 				}
 			}
 		});
@@ -337,9 +343,11 @@ public class MainWindow extends JFrame {
 				if (hideToolBarFlag == false) {
 					toolbar.setVisible(false);
 					hideToolBarFlag = true;
+					logger.info("Ukryto pasek narzędziowy");
 				} else {
 					toolbar.setVisible(true);
 					hideToolBarFlag = false;
+					logger.info("Przywrócono pasek narzędziowy");
 				}
 
 			}
@@ -352,6 +360,7 @@ public class MainWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				contentPanel.setResult(
 						String.valueOf(((OperationManager) contentPanel.getTable().getModel()).sumOperation()));
+				logger.info("Przeprowadzono operację suma");
 			}
 		});
 
@@ -362,7 +371,7 @@ public class MainWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				contentPanel.setResult(
 						String.valueOf(((OperationManager) contentPanel.getTable().getModel()).averageOperation()));
-
+				logger.info("Przeprowadzono operację średnia");
 			}
 		});
 
@@ -375,7 +384,7 @@ public class MainWindow extends JFrame {
 						+ String.valueOf(((OperationManager) contentPanel.getTable().getModel()).minOperation())
 						+ " Max: "
 						+ String.valueOf(((OperationManager) contentPanel.getTable().getModel()).maxOperation()));
-
+				logger.info("Przeprowadzono operację min/max");
 			}
 
 		});
@@ -414,8 +423,10 @@ public class MainWindow extends JFrame {
 					helper.saveState = true;
 					statusbar.setSaveStatus(helper.getSaveState());
 					statusbar.setFileName(helper.fileName);
+					logger.info("Zapisano plik: " + tempPath);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
+					logger.error("Błąd zapisu pliku");
 					
 				}
 			}
@@ -653,19 +664,18 @@ public class MainWindow extends JFrame {
 		}
 		
 		
-		System.out.println(helper.fileName);
 		try {
 			if(!helper.activePath.equals(null)) {
-				System.out.println("NIE JESTEM NULLEM");
 			helper.saveFile(tempPath, ((OperationManager) contentPanel.getTable().getModel()).getData());
 			helper.saveState = true;
 			statusbar.setSaveStatus(helper.getSaveState());
 			statusbar.setFileName(helper.fileName);
+			logger.info("Zapisano plik: " + saveDialog.getFile());
 			return;
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			
+			logger.error("Błąd zapisu pliku");
 		}
 
 		
@@ -676,12 +686,11 @@ public class MainWindow extends JFrame {
 
 		tempPath = openDialog.getDirectory() + openDialog.getFile();
 		
-		System.out.println(tempPath);
 		tempPath = tempPath.replace("\\", "\\\\");
-		System.out.println(tempPath);
 		if(openDialog.getDirectory()!=null && openDialog.getFile() !=null) {
 			helper.activePath = tempPath;
 			helper.fileName = openDialog.getFile();
+			
 			}
 		else {
 			return;
@@ -695,9 +704,11 @@ public class MainWindow extends JFrame {
 			helper.saveState = true;
 			statusbar.setSaveStatus(helper.getSaveState());
 			statusbar.setFileName(helper.fileName);
+			logger.info("Załadowano plik: " + openDialog.getFile());
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			logger.error("Błąd załadowania pliku");
 		}
 	}
 	
