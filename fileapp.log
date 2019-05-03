@@ -1,22 +1,13 @@
-INFO  [main]: 2019-05-03 22:59:15,349Start aplikacji
-INFO  [main]: 2019-05-03 23:06:21,660Start aplikacji
-INFO  [main]: 2019-05-03 23:09:00,999Start aplikacji
-INFO  [AWT-EventQueue-0]: 2019-05-03 23:09:59,168Zapisano plik: test.csv
-INFO  [AWT-EventQueue-0]: 2019-05-03 23:10:12,579Załadowano plik: test.csv
-INFO  [main]: 2019-05-03 23:13:49,164Start aplikacji
-INFO  [AWT-EventQueue-0]: 2019-05-03 23:14:03,297Zapisano plik: C:\\Users\\Paweł Szeląg\\Desktop\\123.csv
-INFO  [main]: 2019-05-03 23:24:03,517Start aplikacji
-INFO  [AWT-EventQueue-0]: 2019-05-03 23:24:08,778Przeprowadzono operację suma
-INFO  [main]: 2019-05-03 23:26:16,678Start aplikacji
-INFO  [AWT-EventQueue-0]: 2019-05-03 23:26:18,241Wybrano datęSat May 18 00:00:00 CEST 2019
-INFO  [main]: 2019-05-03 23:30:27,874Start aplikacji
-INFO  [AWT-EventQueue-0]: 2019-05-03 23:30:30,615Wprowadzono wartość: 21 do komórki: C2
-INFO  [main]: 2019-05-03 23:30:53,292Start aplikacji
-INFO  [AWT-EventQueue-0]: 2019-05-03 23:30:56,873Wprowadzono wartość: 43 do komórki: D21
-INFO  [main]: 2019-05-03 23:31:22,198Start aplikacji
-INFO  [AWT-EventQueue-0]: 2019-05-03 23:31:24,774Wprowadzono wartość: 12 do komórki: C3
-INFO  [AWT-EventQueue-0]: 2019-05-03 23:31:43,976Wprowadzono wartość: 11 do komórki: D3
-INFO  [AWT-EventQueue-0]: 2019-05-03 23:31:46,057Wprowadzono wartość: 11 do komórki: D3
-INFO  [main]: 2019-05-03 23:57:10,866Start aplikacji
-INFO  [AWT-EventQueue-0]: 2019-05-03 23:57:19,457Wprowadzono wartość: 12 do komórki: A3
-INFO  [AWT-EventQueue-0]: 2019-05-03 23:57:25,351Próba znalezienia wartości: 12.0
+﻿INFO  : 2019-05-04 00:09:33,814 [MainWindow.java] line: 721 Start aplikacji
+INFO  : 2019-05-04 00:09:36,765 [MainWindow.java] line: 363 Przeprowadzono operację suma
+INFO  : 2019-05-04 00:09:37,416 [MainWindow.java] line: 374 Przeprowadzono operację średnia
+INFO  : 2019-05-04 00:09:39,836 [ContentPanel.java] line: 434 Wprowadzono wartość: 123 do komórki: C3
+INFO  : 2019-05-04 00:11:10,078 [MainWindow.java] line: 722 Start aplikacji
+INFO  : 2019-05-04 00:11:12,481 [MainWindow.java] line: 123 Zamknięcie aplikacji
+INFO  : 2019-05-04 00:12:45,830 [MainWindow.java] line: 722 Start aplikacji
+INFO  : 2019-05-04 00:12:52,813 [MainWindow.java] line: 123 Zamknięcie aplikacji
+INFO  : 2019-05-04 00:14:03,740 [MainWindow.java] line: 718 Start aplikacji
+INFO  : 2019-05-04 00:14:10,471 [MainWindow.java] line: 118 Zamknięcie aplikacji
+INFO  : 2019-05-04 00:14:15,644 [MainWindow.java] line: 718 Start aplikacji
+INFO  : 2019-05-04 00:14:21,847 [MainWindow.java] line: 458 Wybrano opcję porada dnia
+INFO  : 2019-05-04 00:14:28,680 [MainWindow.java] line: 118 Zamknięcie aplikacji

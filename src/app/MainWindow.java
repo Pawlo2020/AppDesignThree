@@ -7,8 +7,6 @@
  */
 
 package app;
-
-import java.io.FileWriter;
 import java.io.FilenameFilter;
 
 import operations.FileHelper;
@@ -17,13 +15,11 @@ import about.AboutWindow;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JTable;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -33,10 +29,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.JMenu;
@@ -106,12 +99,7 @@ public class MainWindow extends JFrame {
 				return false;
 			}
 		});
-		// setSize(new Dimension(960, 640));
 
-		
-		
-		
-		
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -120,6 +108,7 @@ public class MainWindow extends JFrame {
 						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,
 						new String[] { "Tak", "Nie" }, "Tak");
 				if (value == JOptionPane.YES_OPTION) {
+					logger.info("Zamknięcie aplikacji");
 					dispose();
 					System.exit(0);
 				} else {
@@ -459,6 +448,7 @@ public class MainWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				totd.showDialog(frame);
+				logger.info("Wybrano opcję porada dnia");
 				
 			}
 		});
@@ -677,8 +667,6 @@ public class MainWindow extends JFrame {
 			// TODO Auto-generated catch block
 			logger.error("Błąd zapisu pliku");
 		}
-
-		
 	}
 		
 	public void open() {
