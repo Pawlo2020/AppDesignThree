@@ -11,3 +11,14 @@ INFO  : 2019-05-04 00:14:10,471 [MainWindow.java] line: 118 Zamknięcie aplikacj
 INFO  : 2019-05-04 00:14:15,644 [MainWindow.java] line: 718 Start aplikacji
 INFO  : 2019-05-04 00:14:21,847 [MainWindow.java] line: 458 Wybrano opcję porada dnia
 INFO  : 2019-05-04 00:14:28,680 [MainWindow.java] line: 118 Zamknięcie aplikacji
+INFO  : 2019-05-17 16:43:26,324 [MainWindow.java] line: 709 Start aplikacji
+INFO  : 2019-05-17 16:43:55,900 [MainWindow.java] line: 111 Zamknięcie aplikacji
+INFO  : 2019-05-17 16:52:54,304 [MainWindow.java] line: 709 Start aplikacji
+INFO  : 2019-05-17 16:52:57,955 [ContentPanel.java] line: 435 Wprowadzono wartość: 22 do komórki: C3
+INFO  : 2019-05-17 16:53:01,435 [MainWindow.java] line: 111 Zamknięcie aplikacji
+INFO  : 2019-05-17 16:53:30,765 [MainWindow.java] line: 709 Start aplikacji
+INFO  : 2019-05-17 17:06:48,547 [MainWindow.java] line: 111 Zamknięcie aplikacji
+INFO  : 2019-05-17 21:14:43,383 [MainWindow.java] line: 709 Start aplikacji
+INFO  : 2019-05-17 21:14:48,602 [ContentPanel.java] line: 448 Wprowadzono wartość: 76 do komórki: C3
+INFO  : 2019-05-17 21:14:54,895 [ContentPanel.java] line: 569 Utworzono nowy arkusz
+INFO  : 2019-05-17 21:15:00,669 [MainWindow.java] line: 111 Zamknięcie aplikacji

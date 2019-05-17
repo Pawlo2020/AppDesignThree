@@ -44,7 +44,7 @@ public class OperationManager extends AbstractTableModel {
 		iterator=0;
 		for(int i=0;i<5;i++) {
 			for(int j=0; j<5;j++) {
-				chartData[iterator] = Double.valueOf(data[i][j].toString());
+				chartData[iterator] = Double.valueOf(data[j][i].toString());
 				iterator++;
 			}
 		}

@@ -22,6 +22,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Hashtable;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -86,6 +87,7 @@ public class ContentPanel extends JPanel {
 	ContentPanel mainContent;
 	JFreeChart chart;
 	ChartPanel chartPanel;
+	double datasetData[];
 	public DefaultTableCellRenderer renderer;
 
 	public ContentPanel(FileHelper helper, StatusBar state, FileDialog saveDialog, FileDialog openDialog,MainWindow frame) {
@@ -102,10 +104,22 @@ public class ContentPanel extends JPanel {
 		taskPane.setBackground(new Color(48, 51, 107));
 		JTaskPaneGroup g1 = new JTaskPaneGroup();
 		g1.setTitle("Zadania");
-		JLinkButton newLink = new JLinkButton("Nowy");
-		JLinkButton openLink = new JLinkButton("Otwórz");
-		JLinkButton saveLink = new JLinkButton("Zapisz");
-		JLinkButton findLink = new JLinkButton("Znajdź");
+		
+		ImageIcon iconNew = new ImageIcon(getClass().getResource("graphics/smallnew.png"));
+		ImageIcon iconOpen = new ImageIcon(getClass().getResource("graphics/smallopen.png"));
+		ImageIcon iconSave = new ImageIcon(getClass().getResource("graphics/smallsave.png"));
+		ImageIcon iconFind = new ImageIcon(getClass().getResource("graphics/smallfind.png"));
+		ImageIcon iconSum = new ImageIcon(getClass().getResource("graphics/smallsum.png"));
+		ImageIcon iconAVG = new ImageIcon(getClass().getResource("graphics/smallavg.png"));
+		ImageIcon iconBound = new ImageIcon(getClass().getResource("graphics/smallbound.png"));
+		ImageIcon iconZero = new ImageIcon(getClass().getResource("graphics/zero.png"));
+		ImageIcon iconPng = new ImageIcon(getClass().getResource("graphics/smallpng.png"));
+		ImageIcon iconRefresh = new ImageIcon(getClass().getResource("graphics/smallrefresh.png"));
+		
+		JLinkButton newLink = new JLinkButton("Nowy", iconNew);
+		JLinkButton openLink = new JLinkButton("Otwórz",iconOpen);
+		JLinkButton saveLink = new JLinkButton("Zapisz",iconSave);
+		JLinkButton findLink = new JLinkButton("Znajdź", iconFind);
 		g1.add(newLink);
 		g1.add(openLink);
 		g1.add(saveLink);
@@ -118,10 +132,10 @@ public class ContentPanel extends JPanel {
 		JTaskPaneGroup g2 = new JTaskPaneGroup();
 		g2.setTitle("Operacje");
 		taskPane.add(g2);
-		JLinkButton sumLink = new JLinkButton("Suma");
-		JLinkButton avgLink = new JLinkButton("Średnia");
-		JLinkButton minmaxLink = new JLinkButton("Min/Max");
-		JLinkButton zeroLink = new JLinkButton("Wyzerowanie tablicy");
+		JLinkButton sumLink = new JLinkButton("Suma",iconSum);
+		JLinkButton avgLink = new JLinkButton("Średnia",iconAVG);
+		JLinkButton minmaxLink = new JLinkButton("Min/Max",iconBound);
+		JLinkButton zeroLink = new JLinkButton("Wyzerowanie tablicy",iconZero);
 		g2.add(sumLink);
 		g2.add(avgLink);
 		g2.add(minmaxLink);
@@ -131,8 +145,8 @@ public class ContentPanel extends JPanel {
 		g3.setTitle("Wykres");
 		taskPane.add(g3);
 		
-		JLinkButton savePngLink = new JLinkButton("Zapisz jako PNG");
-		JLinkButton refreshLink = new JLinkButton("Odśwież");
+		JLinkButton savePngLink = new JLinkButton("Zapisz jako PNG",iconPng);
+		JLinkButton refreshLink = new JLinkButton("Odśwież",iconRefresh);
 		g3.add(savePngLink);
 		g3.add(refreshLink);
 		navPanel.add(taskPane);
@@ -811,35 +825,103 @@ public class ContentPanel extends JPanel {
 	
 	public void updateChart(boolean initialFlag) {
 		
-		HistogramDataset dataset = new HistogramDataset();
-		if(initialFlag==false) {
-		dataset.addSeries("Histogram", (((OperationManager) table.getModel()).getChartData()), 30);
-		}else {
-			dataset.addSeries("Histogram", (((OperationManager) table.getModel()).getChartData()), 30,-1000,1000);
-		}
-		JPanel bottomPanel = new JPanel();
-		bottomPanel.setMaximumSize(new Dimension(800,100));
-		bottomPanel.setLayout(new FlowLayout(FlowLayout.LEFT,40,5));
-		
+		//HistogramDataset dataset = new HistogramDataset();
+				DefaultCategoryDataset dataseta = new DefaultCategoryDataset();
+				
+				
+				if(initialFlag==false) {
+					datasetData = ((OperationManager) table.getModel()).getChartData();
+					int counter = 1;
+					for(int i=0;i<25;i++) {
+						if(i%5==0) {
+							counter=1;
+						}
+						if(i>=0&&i<5) {
+						dataseta.addValue(datasetData[i], "",'A'+String.valueOf(counter) );
+						
+						}
+						if(i>=5&&i<10) {
+							dataseta.addValue(datasetData[i], "",'B'+String.valueOf(counter) );
+						}
+						
+						if(i>=10&&i<15) {
+							dataseta.addValue(datasetData[i], "",'C'+String.valueOf(counter) );
+						}
+						if(i>=15&&i<20) {
+							dataseta.addValue(datasetData[i], "",'D'+String.valueOf(counter) );
+						}
+						if(i>=20&&i<25) {
+							dataseta.addValue(datasetData[i], "",'E'+String.valueOf(counter) );
+						}
+						counter++;
+						
+					}
+				}
+					
+				
+				
+				
+				JPanel bottomPanel = new JPanel();
+				bottomPanel.setMaximumSize(new Dimension(800,100));
+				bottomPanel.setLayout(new FlowLayout(FlowLayout.LEFT,40,5));
+				
 
-		PlotOrientation orientation = PlotOrientation.VERTICAL; 
-		int max = (int)((OperationManager) table.getModel()).maxOperation();
-		
+				PlotOrientation orientation = PlotOrientation.VERTICAL; 
+				int max = (int)((OperationManager) table.getModel()).maxOperation();
+				
+				
+				//chart = ChartFactory.createHistogram("Histogram pionowy", "Wartość", "Ilość", dataset, orientation, false, false, false);
+				chart = ChartFactory.createBarChart("Wykres", "Komórka", "Wartość", dataseta,orientation ,false,false,false);
+				chart.setBorderVisible(true);
+				chart.setTitle(new TextTitle("Histogram pionowy", new Font("Verdana", Font.PLAIN, 18)));
+				chartPanel = new ChartPanel(chart);
+				chartPanel.setBackground(Color.GRAY);
+				chartPanel.setPreferredSize(new Dimension(880,230));
+				
+				if(initialFlag==true) {
+					
+					
+					datasetData = ((OperationManager) table.getModel()).getChartData();
+					int counter = 1;
+					for(int i=0;i<25;i++) {
+						if(i%5==0) {
+							counter=1;
+						}
+						if(i>=0&&i<5) {
+						dataseta.addValue(datasetData[i], "",'A'+String.valueOf(counter) );
+						
+						}
+						if(i>=5&&i<10) {
+							dataseta.addValue(datasetData[i], "",'B'+String.valueOf(counter) );
+						}
+						
+						if(i>=10&&i<15) {
+							dataseta.addValue(datasetData[i], "",'C'+String.valueOf(counter) );
+						}
+						if(i>=15&&i<20) {
+							dataseta.addValue(datasetData[i], "",'D'+String.valueOf(counter) );
+						}
+						if(i>=20&&i<25) {
+							dataseta.addValue(datasetData[i], "",'E'+String.valueOf(counter) );
+						}
+						counter++;
+						
+					}
+				chart.getCategoryPlot().getRangeAxis().setLowerBound(0.0);
+				chart.getCategoryPlot().getRangeAxis().setUpperBound(1000);
+				}
+				
 
-		chart = ChartFactory.createHistogram("Histogram pionowy", "Wartość", "Ilość", dataset, orientation, false, false, false);
-		chart.setBorderVisible(true);
-		chart.setTitle(new TextTitle("Histogram pionowy", new Font("Verdana", Font.PLAIN, 18)));
-		chartPanel = new ChartPanel(chart);
-		chartPanel.setBackground(Color.GRAY);
-		chartPanel.setPreferredSize(new Dimension(880,230));
-		
-		
-	
-		bottomPanel.add(chartPanel);
-		
-		
-		
-		conPane.add(bottomPanel);
+
+				
+
+
+			
+				bottomPanel.add(chartPanel);
+				
+				
+				
+				conPane.add(bottomPanel);
 	}
 
 	public void highlightCell(int row, int col) {
