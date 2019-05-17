@@ -1,10 +1,4 @@
-/**
- * @author Paweł Szeląg
- * @version 1.0.0
- * 
- * 
- * 
- */
+
 
 package app;
 import java.io.FilenameFilter;
@@ -47,13 +41,28 @@ import com.l2fprod.common.swing.tips.DefaultTip;
 import com.l2fprod.common.swing.tips.DefaultTipModel;
 
 import operations.OperationManager;
-
+/**
+ * <h3>MainWindow class</h3>
+ * Application was created for needs Application Design classes
+ * <p>MainWindow class is responsible for initializing and creating the window.</p>
+ * <p>Creating a window and GUI take place in appriopriate methods. Class is supported by events, which are triggered by user activity.</p>
+ *
+ * 
+ * @author Paweł Szeląg
+ * @since   2019-05-16
+ */
 public class MainWindow extends JFrame {
-
+	
 
 	private static final long serialVersionUID = 1L;
-	final static Logger logger = Logger.getLogger("logger");	
 	
+	/**
+	  * Access field {@link app#Logger}
+	  */
+	
+	
+	
+	final static Logger logger = Logger.getLogger("logger");	
 	JMenu fileMenu, editMenu, viewMenu, helpMenu, windowItem, operationMenu;
 	JMenuItem newItem, loadItem, saveItem, saveAsItem, exitItem, helpItem, aboutItem, valuesItem, avgItem, sumItem,
 			findItem,tipItem;
