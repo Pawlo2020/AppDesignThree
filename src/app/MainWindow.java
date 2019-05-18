@@ -57,7 +57,7 @@ public class MainWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	  * 
+	  * Logger
 	  */
 	
 	
@@ -89,7 +89,7 @@ public class MainWindow extends JFrame {
 	
 	/**
 	 * <h2>MainWindow constructor</h2>
-	 * <p>Construktor with no parameters</p>
+	 * <p>Constructor with no parameters</p>
 	 * @param none
 	 * 
 	 */
@@ -540,7 +540,11 @@ public class MainWindow extends JFrame {
 				
 			
 		});}
-
+	/**
+	 * <h2>createAbout() method</h2>
+	 * <p>Method defines new AboutWindow object and shows About window after triggering event</p>
+	 */
+	
 	public void createAbout() {
 		dialog = new AboutWindow(this);
 	}
