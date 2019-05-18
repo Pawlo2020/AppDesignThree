@@ -57,7 +57,7 @@ public class MainWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	  * Access field {@link app#Logger}
+	  * 
 	  */
 	
 	
@@ -86,6 +86,13 @@ public class MainWindow extends JFrame {
 	DefaultTipModel tips;
 	static JTipOfTheDay totd;
 	JFrame frame;
+	
+	/**
+	 * <h2>MainWindow constructor</h2>
+	 * <p>Construktor with no parameters</p>
+	 * @param none
+	 * 
+	 */
 	MainWindow() {
 		super("Aplikacja");
 		frame = this;
@@ -141,6 +148,15 @@ public class MainWindow extends JFrame {
 
 	JButton but;
 
+	
+	/**
+	 * <h2>InitGUI method</h2>
+	 * <p>Method responsible for initializing GUI in main window</p>
+	 * <p>Graphic user interface in main window consists of menubar, toolbar, <br>
+	 * navigation bar, content pane and statusbar.
+	 * @param none
+	 * </p>
+	 */
 	public void initGUI() {
 		topPanel = new JPanel();
 		topPanel.setLayout(new BorderLayout());
@@ -165,6 +181,10 @@ public class MainWindow extends JFrame {
 		// Events
 
 		// Okno pomocy
+		
+		/**
+		 * 
+		 */
 		aboutItem.addActionListener(new ActionListener() {
 
 			@Override
@@ -525,6 +545,10 @@ public class MainWindow extends JFrame {
 		dialog = new AboutWindow(this);
 	}
 
+	/**
+	 * <h2>createManu() method</h2>
+	 * <p>Method supports initializing the GUI of menu in main window.</p>
+	 */
 	public void createToolbarButtons() {
 
 		toolbarButtons = new ToolBarButton[7];
@@ -541,6 +565,10 @@ public class MainWindow extends JFrame {
 
 	}
 
+	/**
+	 * <h2>createManu() method</h2>
+	 * <p>Method supports initializing the GUI of menu in main window.</p>
+	 */
 	public void createMenu() {
 
 		menuBar = new JMenuBar();
@@ -608,6 +636,10 @@ public class MainWindow extends JFrame {
 
 	}
 
+	/**
+	 * <h2>createToolbar() method</h2>
+	 * <p>Method supports initializing the GUI of toolbar in main window.</p>
+	 */
 	public void createToolbar() {
 		javax.swing.JPanel[] panelArray = new javax.swing.JPanel[7];
 
@@ -642,6 +674,11 @@ public class MainWindow extends JFrame {
 
 	}
 
+	/**
+	 * <h2>Save method</h2>
+	 * <p>Method responsible for saving the currect state of calculation table.<br>
+	 * Used especially in events triggered by user.</p>
+	 */
 	public void save() {
 		
 		if (helper.activePath == null) {
@@ -678,6 +715,12 @@ public class MainWindow extends JFrame {
 		}
 	}
 		
+	
+	/**
+	 * <h2>Open method</h2>
+	 * <p>Method responsible for opening the specific file.<br>
+	 * Used especially in events triggered by user.</p>
+	 */
 	public void open() {
 		openDialog.setVisible(true);
 
@@ -709,6 +752,11 @@ public class MainWindow extends JFrame {
 		}
 	}
 	
+	
+	/**
+	 * <h2>Main method</h2>
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		MainWindow Window = new MainWindow();
