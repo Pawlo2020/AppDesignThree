@@ -10,7 +10,6 @@ import java.awt.Dimension;
 import java.awt.FileDialog;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -24,7 +23,6 @@ import java.util.Hashtable;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -48,48 +46,124 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.category.SlidingCategoryDataset;
-import org.jfree.data.statistics.HistogramDataset;
-import org.jfree.data.statistics.HistogramType;
 
 import com.l2fprod.common.swing.JLinkButton;
 import com.l2fprod.common.swing.JTaskPane;
 import com.l2fprod.common.swing.JTaskPaneGroup;
-import com.l2fprod.common.swing.JTipOfTheDay;
-import com.l2fprod.common.swing.TipModel;
-import com.l2fprod.common.swing.plaf.JTipOfTheDayAddon;
 
 import operations.OperationManager;
+
+/**
+ * <h3>ContentPanel class</h3>
+ * <p>ContentPanel is responsible for creating GUI of the central pane of application.<br>
+ * Central pane consists of managing tools for calculations, bar chart and table.</p>
+ * <p>Creating a window and GUI take place in constructor of ContentPanel class. Class is supported by events, which are triggered by user activity.</p>
+ *
+ * 
+ * @author Paweł Szeląg
+ * @version 3.0.0
+ * @since   2019-05-16
+ */
+
+
 
 public class ContentPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	
+	/*** Logging object for events triggered by user.*/
 	final static Logger logger = Logger.getLogger("logger");
-	JLabel[] numbersLabel, numbersLabelTwo;
+	
+	/**Array of JLabels for containing informations about column indexes. */
+	JLabel[] numbersLabel;
+	
+	/**Array of JLabels for containing informations about row indexes. */
+	JLabel[] numbersLabelTwo;
+	
+	/**Entry text area instance for giving numbers into table. */
 	JTextField entryArea;
+	
+	/**Button instance responsible for adding entry from entryArea into table. */
 	JButton addEntryButton;
+	
+	/**List containing string names about operations available in the application. */
 	JList operationList;
+	
+	/**Button instance for calculating appriopriate operation. */
 	JButton calculateButton;
+	
+	/**Button instance responsible for filling with zeros the main table. */
 	JButton zeroButton;
+	
+	/**Button instance responsible for saving data from table into the file. */
 	JButton saveButton;
+	
+	/**Data model for operation list. */
 	OperationListModel listModel;
-	int row, col;
+	
+	/**Variable which contains number of rows. */
+	int row; 
+	
+	/**Variable which contains number of columns. */
+	int col;
+	
+	/**Table instance object. */
 	JTable table;
+	
+	/**Variable which supports creating a number format of entry values in table. */
 	String format;
+	
+	/**Calculation result field area.*/
 	JTextArea resultArea;
+	
+	/**Object for formatting entry values.*/
 	DecimalFormat df;
+	
+	/**General instance object of entry value. */
 	Object value;
+	
+	/*** Temporary variable for storing path of current file.*/
 	private String tempPath;
+	
+	/*** Scrollbar instance for calculate result area.*/
 	JScrollPane resPane;
+	
+	/*** ComboBox calendar object instance.*/
 	JCalendarCombo calendar;
+	
+	/*** Field which stores choiced data by user.*/
 	JTextArea dateArea;
+	
+	/*** Pane responsible for managing layout for table and calculation tools.*/
 	JPanel conPane;
+	
+	/*** Current object instance.*/
 	ContentPanel mainContent;
+	
+	/*** Chart object instance updated dynamically.*/
 	JFreeChart chart;
+	
+	/*** Chart pane area.*/
 	ChartPanel chartPanel;
+	
+	/*** Data set for table*/
 	double datasetData[];
+	
+	/*** Renderer responsible for appriopriate displaying values in table*/
 	public DefaultTableCellRenderer renderer;
 
+	
+	/**
+	 * Constructor of the ContentPanel class. <br>
+	 * Responsible for creating a graphic user interface, assigning a data model<br>
+	 * and handling events triggered by user.
+	 *
+	 * @param helper An FileHelper object. Responsible for storing and managing informations about active file.
+	 * @param state StatusBar object instance. Responsible for containing informations about current file name and save status. 
+	 * @param saveDialog Save dialog window instance object.
+	 * @param openDialog Load dialog window instance object.
+	 * @param frame MainWindow frame object handler.
+	 */
 	public ContentPanel(FileHelper helper, StatusBar state, FileDialog saveDialog, FileDialog openDialog,MainWindow frame) {
 		super();
 		mainContent = this;
@@ -810,11 +884,21 @@ public class ContentPanel extends JPanel {
 		});
 	}
 
+	
+	/**
+	 * Method responsible for setting the calculated value into the result area.
+	 * @param result Calculated result value
+	 * */
 	public void setResult(String result) {
 		resultArea.setText(result);
 	}
 
 	//Tworzenie odpowiedniego formatu (liczby po przecinku)
+	
+	/** Creating appriopriate entry value format 
+	 * @param text Floating part of entry value
+	 * @return Supported variable for format conversion
+	 * */
 	public String getFormat(String text) {
 		format = "#";
 		for (int i = 0; i < text.length(); i++) {
@@ -823,6 +907,11 @@ public class ContentPanel extends JPanel {
 		return format;
 	}
 	
+	
+	/**
+	 * Method responsible for updating bar chart area
+	 * @param initialFlag Boolean flag which stores information about initial state of application
+	 */
 	public void updateChart(boolean initialFlag) {
 		
 		//HistogramDataset dataset = new HistogramDataset();
@@ -924,6 +1013,11 @@ public class ContentPanel extends JPanel {
 				conPane.add(bottomPanel);
 	}
 
+	/**
+	 * Method responsible for highlighting appriopriate cell in the table
+	 * @param row Row index
+	 * @param col Column index
+	 */
 	public void highlightCell(int row, int col) {
 		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		table.setColumnSelectionAllowed(true);
@@ -931,6 +1025,11 @@ public class ContentPanel extends JPanel {
 		table.changeSelection(row, col, false, false);
 	}
 
+	
+	/**
+	 * Gets current table instance
+	 * @return table instance
+	 */
 	public JTable getTable() {
 		return table;
 	}
@@ -938,6 +1037,10 @@ public class ContentPanel extends JPanel {
 	
 
 	// Pobieranie wartości
+	/**
+	 * Method responsible for getting and checking entry value providing by user.
+	 * @return Boolean flag checking whether user's providing value is correct or nor
+	 */
 	public boolean getEntryValue() {
 		//Zastapienie przecinka kropka
 		DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols();

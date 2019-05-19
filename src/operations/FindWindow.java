@@ -21,16 +21,33 @@ import org.apache.log4j.Logger;
 import app.ContentPanel;
 import operations.OperationManager;
 
+/**
+ * <h3>FindWindow class</h3>
+ * <p>FindWindow class is responsible for initializing and creating the find window context.</p>
+ * <p>Creating a window and GUI take place in appriopriate methods. Class is supported by events, which are triggered by user activity.</p>
+ *
+ * 
+ * @author Paweł Szeląg
+ * @version 3.0.0
+ * @since   2019-05-16
+ */
 public class FindWindow extends JDialog {
-	/**
-	 * @author Paweł Szeląg
-	 */
+
 	private static final long serialVersionUID = 1L;
 
+	/** Field which contains value to find provided by user*/
 	JTextField findValue;
+	
+	/**Button instance for searching the appriopriate value*/
 	JButton findButton;
+	
+	/*** Logging object for events triggered by user.*/
 	final static Logger logger = Logger.getLogger("logger");
 
+	/**
+	 * Class constructor. Responsible for creating GUI and handling events truggered by user.
+	 * @param panel Handler co ContentPanel instance
+	 */
 	public FindWindow(ContentPanel panel) {
 
 		

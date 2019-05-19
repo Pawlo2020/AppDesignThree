@@ -33,10 +33,8 @@ import javax.swing.JToolBar;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.apache.log4j.*;
 
 import com.l2fprod.common.swing.JTipOfTheDay;
-import com.l2fprod.common.swing.plaf.windows.WindowsLookAndFeelAddons;
 import com.l2fprod.common.swing.tips.DefaultTip;
 import com.l2fprod.common.swing.tips.DefaultTipModel;
 
@@ -49,6 +47,7 @@ import operations.OperationManager;
  *
  * 
  * @author Paweł Szeląg
+ * @version 3.0.0
  * @since   2019-05-16
  */
 public class MainWindow extends JFrame {
@@ -56,42 +55,134 @@ public class MainWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	/**
-	  * Logger
-	  */
-	
-	
-	
+	/*** Logging object for events triggered by user.*/
 	final static Logger logger = Logger.getLogger("logger");	
-	JMenu fileMenu, editMenu, viewMenu, helpMenu, windowItem, operationMenu;
-	JMenuItem newItem, loadItem, saveItem, saveAsItem, exitItem, helpItem, aboutItem, valuesItem, avgItem, sumItem,
-			findItem,tipItem;
+	
+	/*** Menu file object for displaying menu list of activities with current file.*/
+	JMenu fileMenu;
+	
+	/*** Menu edit object for displaying menu list of activities for editing current calculation process.*/
+	JMenu editMenu; 
+	
+	/*** Menu view object for displaying menu list of managing view options.*/  
+	JMenu viewMenu; 
+	
+    /*** Menu file object for displaying help contexts for user.*/  	
+	JMenu helpMenu; 
+	
+	/*** Menu file object for displaying list of window display modes.*/  
+	JMenu windowItem;
+	
+	/*** Menu file object for displaying list of activities with current file.*/  
+	JMenu operationMenu;
+	
+	/*** Creates new calculation sheet.*/
+	JMenuItem newItem; 
+	
+	/*** Loads new data to the table.*/  
+	JMenuItem loadItem; 
+	
+	/*** Saves data from table to the file.*/  
+	JMenuItem saveItem; 
+	
+	/*** Saves data from table to the file with specific name.*/
+	JMenuItem saveAsItem; 
+	
+	/*** Closes the application.*/
+	JMenuItem exitItem; 
+	
+	/*** Initialize help context window.*/
+	JMenuItem helpItem; 
+	
+	/*** Initialize about window.*/
+	JMenuItem aboutItem; 
+	
+	/*** Saves data from table to the file.*/
+	JMenuItem valuesItem; 
+	
+	/** Calculate average value.*/
+	JMenuItem avgItem; 
+	
+	/** Calculate sum value.*/
+	JMenuItem sumItem;
+	
+	/**Displays find window.*/
+	JMenuItem findItem; 
+	
+	/** Shows tip of the day.*/
+	JMenuItem tipItem;
+	
+	
+	/** Instance of menu.*/
 	JMenuBar menuBar;
-	JCheckBoxMenuItem alwaysOnTop, hideToolbar, hideStatusbar;
+	
+	/** Activate always on top mode window*/
+	JCheckBoxMenuItem alwaysOnTop;
+	
+	/** Hides toolbar.*/
+	JCheckBoxMenuItem hideToolbar; 
+	
+	/** Menu item which hides statusbar.*/
+	JCheckBoxMenuItem hideStatusbar;
+	
+	/** Instance object of toolbar.*/
 	JToolBar toolbar;
+	
+	/** Panel which contains toolbar and menu instances.*/
 	JPanel topPanel;
+	
+	/** Panel of content. It stores layout for table, chart and calculation tools.*/
 	ContentPanel contentPanel;
+	
+	/**Initialize the instance of about window*/
 	AboutWindow dialog;
+	
+	/*** Array of toolbar buttons*/
 	ToolBarButton[] toolbarButtons;
+	
+	/*** Flag which holds informations about alwaysOnTop switching mode*/
 	boolean alwaysOnTopFlag = false;
+	
+	/*** Flag which holds informations about statusbar visibility*/
 	boolean hideStatusBarFlag = false;
+	
+	/*** Flag which holds informations about toolbar visibility*/
 	boolean hideToolBarFlag = false;
+	
+	/*** Array which stores informations about file names paths icons*/
 	String[] fileNames;
+	
+	/*** Array which stores informations about toolbar button names*/
 	String[] toolBarButtonNames;
+	
+	/*** Instance of opening file window*/
 	FileDialog openDialog;
+	
+	/*** Instance of saving file window*/
 	FileDialog saveDialog;
+	
+	/*** Temporary variable for storing path of current file*/
 	String tempPath;
+	
+	/*** Instance of statusbar*/
 	public StatusBar statusbar;
+	
+	/*** Object contains handler to current file and save status*/
 	FileHelper helper;
+	
+	/*** JTipOfTheDay model instance*/
 	DefaultTipModel tips;
+	
+	/*** Main Tip of the day display instance*/
 	static JTipOfTheDay totd;
+	
+	/*** Frame for main window object*/
 	JFrame frame;
 	
 	/**
 	 * <h2>MainWindow constructor</h2>
-	 * <p>Constructor with no parameters</p>
-	 * @param none
-	 * 
+	 * <p>Constructor with no parameters.<br>
+	 * Construct new application instance</p>
 	 */
 	MainWindow() {
 		super("Aplikacja");
@@ -150,11 +241,9 @@ public class MainWindow extends JFrame {
 
 	
 	/**
-	 * <h2>InitGUI method</h2>
 	 * <p>Method responsible for initializing GUI in main window</p>
 	 * <p>Graphic user interface in main window consists of menubar, toolbar, <br>
 	 * navigation bar, content pane and statusbar.
-	 * @param none
 	 * </p>
 	 */
 	public void initGUI() {
@@ -182,9 +271,6 @@ public class MainWindow extends JFrame {
 
 		// Okno pomocy
 		
-		/**
-		 * 
-		 */
 		aboutItem.addActionListener(new ActionListener() {
 
 			@Override
@@ -641,7 +727,6 @@ public class MainWindow extends JFrame {
 	}
 
 	/**
-	 * <h2>createToolbar() method</h2>
 	 * <p>Method supports initializing the GUI of toolbar in main window.</p>
 	 */
 	public void createToolbar() {
@@ -679,7 +764,6 @@ public class MainWindow extends JFrame {
 	}
 
 	/**
-	 * <h2>Save method</h2>
 	 * <p>Method responsible for saving the currect state of calculation table.<br>
 	 * Used especially in events triggered by user.</p>
 	 */
@@ -721,7 +805,6 @@ public class MainWindow extends JFrame {
 		
 	
 	/**
-	 * <h2>Open method</h2>
 	 * <p>Method responsible for opening the specific file.<br>
 	 * Used especially in events triggered by user.</p>
 	 */
@@ -760,6 +843,7 @@ public class MainWindow extends JFrame {
 	/**
 	 * <h2>Main method</h2>
 	 * @param args
+	 * Starting argument passed to main method
 	 */
 	public static void main(String[] args) {
 

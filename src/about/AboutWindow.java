@@ -18,14 +18,30 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import app.ToolBarButton;
-
+/**
+ * <h3>AboutWindow class</h3>
+ * <p>AboutWindow class is responsible for initializing and creating the About window context.</p>
+ * <p>Creating a window and GUI take place in appriopriate methods. Class is supported by events, which are triggered by user activity.</p>
+ *
+ * 
+ * @author Paweł Szeląg
+ * @version 3.0.0
+ * @since   2019-05-16
+ */
 public class AboutWindow extends JDialog {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
+	
+	/** Handler to MainWindow frame object*/
 	JFrame window;
+	
+	/** Title pane panel instance*/
 	JPanel titlePanel;
+	
+	/**
+	 * Constructor class. Responsible for creating a size of window.
+	 * @param window MainWindow handler passed argument
+	 */
 	public AboutWindow(JFrame window) {
 		this.setTitle("Informacje o aplikacji");
 		this.window = window;
@@ -44,6 +60,10 @@ public class AboutWindow extends JDialog {
 		
 	}
 	
+	
+	/**
+	 * Initiation GUI method for About window. It creates a content.
+	 */
 	private void initGUI() {
 		setLayout(new BorderLayout());
 		titlePanel = new JPanel();
@@ -91,6 +111,9 @@ public class AboutWindow extends JDialog {
 		
 	}
 
+	/**
+	 * Method responsible for locking MainWindow instance.
+	 */
 	public void lockMainWindow() {
 		window.setEnabled(false);
 	}

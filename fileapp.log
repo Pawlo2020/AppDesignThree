@@ -22,3 +22,12 @@ INFO  : 2019-05-17 21:14:43,383 [MainWindow.java] line: 709 Start aplikacji
 INFO  : 2019-05-17 21:14:48,602 [ContentPanel.java] line: 448 Wprowadzono wartość: 76 do komórki: C3
 INFO  : 2019-05-17 21:14:54,895 [ContentPanel.java] line: 569 Utworzono nowy arkusz
 INFO  : 2019-05-17 21:15:00,669 [MainWindow.java] line: 111 Zamknięcie aplikacji
+INFO  : 2019-05-18 16:02:49,967 [MainWindow.java] line: 775 Start aplikacji
+INFO  : 2019-05-18 16:07:19,388 [ContentPanel.java] line: 448 Wprowadzono wartość: 25 do komórki: C3
+INFO  : 2019-05-18 16:08:05,764 [ContentPanel.java] line: 713 Wyzerowano tablicę
+INFO  : 2019-05-18 16:08:08,777 [ContentPanel.java] line: 448 Wprowadzono wartość: 25 do komórki: C3
+INFO  : 2019-05-18 16:08:11,597 [MainWindow.java] line: 132 Zamknięcie aplikacji
+INFO  : 2019-05-18 16:11:41,014 [MainWindow.java] line: 781 Start aplikacji
+INFO  : 2019-05-18 16:36:42,529 [MainWindow.java] line: 138 Zamknięcie aplikacji
+INFO  : 2019-05-18 21:18:33,959 [MainWindow.java] line: 812 Start aplikacji
+INFO  : 2019-05-19 01:12:14,778 [MainWindow.java] line: 169 Zamknięcie aplikacji

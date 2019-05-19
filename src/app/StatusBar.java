@@ -9,23 +9,49 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+/**
+ * <h3>StatusBar class</h3>
+ * <p>StatusBar class is responsible for initializing and creating the toolbar.</p>
+ * <p>Creating a toolbar and GUI take place in appriopriate methods. Class is supported by events, which are triggered by user activity.</p>
+ *
+ * 
+ * @author Paweł Szeląg
+ * @version 3.0.0
+ * @since   2019-05-16
+ */
+
+
+
 public class StatusBar extends JPanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
-	JTextArea fileName, state;
+	/**Field contains current opened file name.*/
+	JTextArea fileName; 
 	
+	/**Field contains current saving state of file.*/
+	JTextArea state;
+	
+	/**
+	 * Method responsible for setting current saving state of file.
+	 * @param text Current state status
+	 */
 	public void stateSetText(String text) {
 		state.setText(text);
 	}
 	
+	
+	/**Method responsible for setting current name of file.
+	 * @param text Current name of file
+	 * */
 	public void fileNameSetText(String text) {
 		fileName.setText(text);
 	}
 	
-	
+	/**
+	 * Parameterless class constructor.<br>
+	 * Responsible for creating and initializing gui for statusbar.
+	 */
 	public StatusBar() {
 		super();
 		setPreferredSize(new Dimension(800, 25));
@@ -59,6 +85,10 @@ public class StatusBar extends JPanel {
 		add(state);
 	}
 	
+	/**
+	 * Method responsible for setting state status.
+	 * @param flag Boolean flag. True - saved status, False - unsaved status
+	 */
 	public void setSaveStatus(boolean flag) {
 		if(flag == true) {
 			state.setText("Zapisano");
@@ -67,6 +97,10 @@ public class StatusBar extends JPanel {
 		}
 	}
 	
+	/**
+	 * Method responsible for setting current name of file.
+	 * @param name File name
+	 */
 	public void setFileName(String name) {
 		fileName.setText(name);
 	}

@@ -10,12 +10,28 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
+/**
+ * <h3>ToolBarButton class</h3>
+ * <p>ToolBarButton class is model of Toolbar button.</p>
+ * <p>This class defines GUI of button.</p>
+ *
+ * 
+ * @author Paweł Szeląg
+ * @version 3.0.0
+ * @since   2019-05-16
+ */
+
+
 public class ToolBarButton extends JButton {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Constructor of the class. Defines GUI of toolbar button
+	 * @param name Button name
+	 * @param icon Button icon
+	 */
 	public ToolBarButton(String name, JLabel icon) {
 		setLayout(new FlowLayout());
 		setMaximumSize(new Dimension(55, 55));
