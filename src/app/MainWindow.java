@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
+import org.apache.log4j.xml.DOMConfigurator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -850,7 +851,8 @@ public class MainWindow extends JFrame {
 		MainWindow Window = new MainWindow();
 		Window.setVisible(true);
 		totd.showDialog(Window);
-		PropertyConfigurator.configure("mainLog.properties");
+		//PropertyConfigurator.configure("mainLog.properties");
+		DOMConfigurator.configure("logMain.xml");
 		logger.info("Start aplikacji");
 		
 		
